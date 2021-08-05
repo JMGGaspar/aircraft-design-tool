@@ -28,6 +28,7 @@ data.vehicle = aero_analysis(data.mission, data.vehicle);
 [data.mission, data.vehicle] = mass_analysis(data.mission, data.vehicle, data.energy);
 data.vehicle = design_space_analysis(data.mission, data.vehicle, data.energy);
 
+data.vehicle = cg_analysis(data.mission, data.vehicle);
 data.vehicle = mass_estimate_analysis(data.mission, data.vehicle);
 
 %% Save new project file

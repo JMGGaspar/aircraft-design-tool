@@ -16,22 +16,6 @@ end
 mass_to = fsolve(@(x)mtow_error(x, mission, vehicle, energy), sum_masses(vehicle), optimoptions('fsolve', 'Display','none'));
 [~, mission, vehicle] = mtow_error(mass_to, mission, vehicle, energy);
 
-function mass = sum_masses(vehicle)
-mass = 0;
-for i = 1 : length(vehicle.components)
-    m = vehicle.components{i}.mass;
-
-    if isfield(vehicle.components{i}, 'reserve')
-        m = m * (1 + vehicle.components{i}.reserve);
-    end
-
-    if isfield(vehicle.components{i}, 'number')
-        m = m * vehicle.components{i}.number;
-    end
-    
-    mass = mass + m;
-end
-
 function mf_fuel = breguet(range, velocity, sfc, ld)
 mf_fuel = 1 - exp(-range * sfc / velocity / ld);
 
